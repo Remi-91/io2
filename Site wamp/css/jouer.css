@@ -1,0 +1,57 @@
+body{
+	background-color: #f1f1f0;
+}
+
+/*Bouton de retour à la page d'accueil accessible sur chaque page*/
+div.header a.NomDuSite{
+	color: red;
+	text-decoration: none;
+	padding: 15px;
+	padding-bottom: 15px;
+	font-size: 30px
+}
+div.header a.NomDuSite span{
+	color: orange;
+	font-size: 30px;
+}
+/*animation du bouton de retour à l'accueil (bouton CardGame)*/
+div.header a.NomDuSite:hover{
+	color: #c9c4ba;
+	transition: 0.3s all;
+}
+div.header a.NomDuSite:hover span{
+	color: #c9c4ba;
+	transition: 0.3s all;
+}
+
+/*Image du haut de page*/
+div.header img{
+	padding-bottom: 0px;
+}
+/*ensemble global des boutons pour accès aux autres pages  (#f5ede0 )*/
+div.header div.nav{
+	background-color: #c9c4ba;
+	padding-top:0px;
+	text-align: center;
+}
+/*Element de la liste li (liste de liens cliquables vers les autres pages)*/
+div.nav ul li{
+	text-decoration: none;
+	display: inline-block;
+	list-style: none;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+/*ensemble des lien cliquables (boutons)*/
+div.nav ul li a{
+	color:white;
+	background-color: #c9c4ba;
+	text-decoration: none;
+	padding: 15px;
+}
+/*animation des boutons de navigation*/
+div.nav ul li a:hover{
+	color: #c9c4ba;
+	background-color: white;
+	transition: 0.3s all;
+}
