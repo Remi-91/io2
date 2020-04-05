@@ -31,9 +31,9 @@
 	</header>
 
 	<div class="infoPerso">
-		<p> <?php if($_SESSION['connecte']==true){echo "Prenom : ", $_SESSION['prenom'];}?> </p>
-		<p> <?php if($_SESSION['connecte']==true){echo "Nom : ", $_SESSION['nom'];} ?> </p>
-		<p> <?php if($_SESSION['connecte']==true){echo "Mot de passe : ", $_SESSION['password'];} ?> </p>
+		<p> <?php if($_SESSION['connecte']==true){echo "Pseudo : ", $_SESSION['Pseudo'];}?> </p>
+		<p> <?php if($_SESSION['connecte']==true){echo "email : ", $_SESSION['email'];} ?> </p>
+		<p> <?php if($_SESSION['connecte']==true){echo "Vous êtes : ", $_SESSION['sexe'];} ?> </p>
 	</div>
 
 

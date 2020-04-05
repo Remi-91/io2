@@ -11,26 +11,29 @@
 	</head>
 	<body>
 		<?php
-			$Nom_User=$_REQUEST["prenom"];
-			$Prenom_User=$_REQUEST["nom"];
-			
-			echo "L'utilisateur ",$Nom_User," ",$Prenom_User," est ",$_SESSION['sexe']," et vient de créer un nouveau compte.";
-		?>
-
-		<?php
-			$_SESSION['prenom'] = $_REQUEST["prenom"];;
-			$_SESSION['nom'] = $_REQUEST["nom"];
+			$_SESSION['Pseudo'] = $_REQUEST['pseudo'];
+			$_SESSION['email'] = $_REQUEST['email'];
 			if ($_REQUEST["sexe"]=="M"){
-							$_SESSION['sexe'] ="un homme";
-						}
-						else{
-							$_SESSION['sexe'] ="une femme";
-						}
+				$_SESSION['sexe'] ="un homme";
+			}
+			else{
+				$_SESSION['sexe'] ="une femme";
+			}
 			$_SESSION['connecte']=true;
 		?>
+
+
+
+		<?php
+			$Pseudo_User=$_REQUEST["pseudo"];
+			
+			echo "L'utilisateur ",$Pseudo_User," est ",$_SESSION['sexe']," et vient de créer un nouveau compte.";
+		?>
+
+		
 		
 
-		<p>Bienvenue, <?php echo $_SESSION['prenom'] ?>, tu es désormais connecté! </p>
+		<p>Bienvenue, <?php echo $_SESSION['Pseudo'] ?>, tu es désormais connecté! </p>
 
 	</body>
 </html>

@@ -30,17 +30,20 @@
 
 	</header>
 
+
+	
+
 	<div class="TousLesFormulaires">
 		<ul>
 			<li>
 				<div class="inscription">
 					<p>Création d'un compte</p>
 					<form action="formulaire.php" method="post"> 
-						Prénom : <input type="text" name="prenom" size="30"> <br><br>
-						Nom : <input type="text" name="nom" size="30"> <br><br>
-						Sexe: Homme : <INPUT type="radio" name="sexe" value="M"> 
-						Femme : <INPUT type="radio" name="sexe" value="F"> <br><br>
-						Mot de passe : <input type="password" name="passwd" size="16"> <br><br>
+						Pseudo : <input type="text" name="pseudo" size="30" required=""> <br><br>
+						Sexe: Homme : <INPUT type="radio" name="sexe" value="M" required> 
+						Femme : <INPUT type="radio" name="sexe" value="F" required> <br><br>
+						email : <INPUT type="email" name="email" required> <br><br>
+						Mot de passe : <input type="password" name="passwd" size="16" required> <br><br>
 						Valider : <input type="submit">
 					</form>
 				</div>
@@ -51,14 +54,19 @@
 				<div class="connexion">
 					<p>Connexion</p>
 					<form action="formulaire.php" method="post">
-						Pseudo : <input typr="text" name="pseudo" size="30"> <br><br>
-						Identifiant : <input type="password" name="p" size="16"> <br><br>
+						Pseudo : <input typr="text" name="pseudo" size="30" required> <br><br>
+						Identifiant : <input type="password" name="p" size="16" required> <br><br>
 					</form>
 				</div>
 			</li>
 		</ul>
 		
 	</div>
+
+	<?php 
+		include 'database.php'; 
+		global $data_base;
+	?>
 
 
 
