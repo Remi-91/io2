@@ -41,7 +41,7 @@
 
 	<footer>
 		<?php
-		echo "L'utilisateur ",$_SESSION['prenom']," ",$_SESSION['nom']," est ",$_SESSION['sexe']," et vient de créer un nouveau compte.";
+		echo "L'utilisateur ",$_SESSION['pseudo']," ",$_SESSION['email']," de sexe ",$_SESSION['sexe']," vient de créer un nouveau compte.";
 		?>
 		<p>CardGame</p>
 	</footer>
