@@ -43,7 +43,6 @@
 				$_SESSION['pseudo'] = $_REQUEST['pseudo'];
 				$_SESSION['email'] = $_REQUEST['email'];
 				$_SESSION['sexe'] = $_REQUEST['sexe'];
-				$_SESSION['connecte'] = true;
 						
 				if(!empty($_POST['sexe']) && !empty($_POST['email']) && !empty($_POST['pseudo'])){
 					include 'database.php'; 
@@ -90,7 +89,7 @@
 				echo "Tous les champs n'ont pas été remplis!";
 			}				
 		}
-		if($_SESSION['connecte']==false){
+		if(!isset($_SESSION['pseudo']) || !isset($_SESSION['email'])){
 			echo "<a href=\"connexion.php\">Vous n'êtes pas connecté. Pour consulter ou modifier vos informations personnelles, veuillez vous connecter en cliquant ici. </a>";
 		}
 	} 
