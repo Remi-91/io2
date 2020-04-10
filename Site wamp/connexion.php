@@ -69,8 +69,6 @@
 		<?php
 			if(isset($_POST['send'])){
 
-				$_SESSION['connecte'] = false;
-
 				if(!empty($_POST['password']) && !empty($_POST['sexe']) && !empty($_POST['email']) && !empty($_POST['pseudo'])){
 					
 					include 'database.php'; 
@@ -107,7 +105,6 @@
 							$_SESSION['pseudo'] = $_REQUEST['pseudo'];
 							$_SESSION['email'] = $_REQUEST['email'];
 							$_SESSION['sexe'] = $_REQUEST['sexe'];
-							$_SESSION['connecte'] = true;
 
 
 							$q = $db->prepare("INSERT INTO utilisateurs(pseudo,email,sexe,password) VALUES(:pseudo,:email,:sexe,:password)");
