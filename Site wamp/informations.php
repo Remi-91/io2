@@ -31,14 +31,14 @@
 	</header>
 
 	<form class="infoPerso" method="post">
-		Pseudo : <INPUT type="text" name='pseudo' placeholder= <?php if($_SESSION['connecte']==true){echo $_SESSION['pseudo'];}?> > <br><br>
-		Email : <INPUT type="text" name='email' placeholder= <?php if($_SESSION['connecte']==true){echo $_SESSION['email'];}?> > <br><br>
+		Pseudo : <INPUT type="text" name='pseudo' placeholder= <?php if(isset($_SESSION['pseudo'])){echo $_SESSION['pseudo'];}?> > <br><br>
+		Email : <INPUT type="text" name='email' placeholder= <?php if(isset($_SESSION['connecte'])){echo $_SESSION['email'];}?> > <br><br>
 		Sexe : Homme<INPUT type="radio" name='sexe' value='M' required>
 		Femme : <INPUT type="radio" name="sexe" value="F" required> <br><br>
 		<INPUT type="submit" name='send' id='send' value="Enregistrer les modifications">
 
 	<?php
-		if($_SESSION['connecte']==true){
+		if(isset($_POST['send'])){
 			if(isset($_POST['send'])){
 				$_SESSION['pseudo'] = $_REQUEST['pseudo'];
 				$_SESSION['email'] = $_REQUEST['email'];
