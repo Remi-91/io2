@@ -55,3 +55,23 @@ div.nav ul li a:hover{
 	background-color: white;
 	transition: 0.3s all;
 }
+
+/*Si l'utilisateur n'est pas connecté, une phrase lui indique qu'il n'a pas accés à ses infos perso*/
+a.SeConnecter{
+	text-decoration: none;
+	background-color: #c9c4ba;
+	color : white;
+	padding: 5px;
+}
+/*Animation du bouton qui redirige vers la page de connexion*/
+a.SeConnecter:hover{
+	color:#c9c4ba;
+	background-color: white;
+	transition: 0.3 all;
+}
+
+/*css pour déplacer le formulaire sur la page*/
+form{
+	margin-left: 20px;
+	margin-top: 20px;
+}
