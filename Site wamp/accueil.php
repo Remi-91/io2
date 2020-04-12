@@ -39,13 +39,6 @@
 
 
 	<footer>
-
-		<?php
-		if(isset($_SESSION['pseudo']) && isset($_SESSION['email']) && isset($_SESSION['sexe'])){
-			echo "L'utilisateur ",$_SESSION['pseudo']," ",$_SESSION['email']," de sexe ",$_SESSION['sexe']," vient de créer un nouveau compte.";
-		}
-		?>
-
 		<p>CardGame</p>
 	</footer>
 </body>
