@@ -31,68 +31,124 @@
 	</header>
 
 	<form class="infoPerso" method="post">
-		Pseudo : <INPUT type="text" name='pseudo' placeholder= <?php if(isset($_SESSION['pseudo'])){echo $_SESSION['pseudo'];}?> > <br><br>
-		Email : <INPUT type="text" name='email' placeholder= <?php if(isset($_SESSION['connecte'])){echo $_SESSION['email'];}?> > <br><br>
-		Sexe : Homme<INPUT type="radio" name='sexe' value='M' required>
-		Femme : <INPUT type="radio" name="sexe" value="F" required> <br><br>
-		<INPUT type="submit" name='send' id='send' value="Enregistrer les modifications">
+		Pseudo : <INPUT type="text" name='pseudo' value= <?php if(isset($_SESSION['pseudo'])){echo $_SESSION['pseudo'];}?> > <br><br>
+		Email : <INPUT type="text" name='email' value= <?php if(isset($_SESSION['email'])){echo $_SESSION['email'];}?> > <br><br>
+		Sexe : Homme<INPUT type="radio" name='sexe' value='M' required <?php if(isset($_SESSION['sexe']) && $_SESSION['sexe']=="M"){echo "checked";}?> >
+		Femme : <INPUT type="radio" name="sexe" value="F" required <?php if(isset($_SESSION['sexe']) && $_SESSION['sexe']=="F"){echo "checked";}?>> <br><br>
+		<INPUT type="submit" name='send' id='send' value="Enregistrer les modifications">	
+
 
 	<?php
-		if(isset($_POST['send'])){
-			if(isset($_POST['send'])){
-				$_SESSION['pseudo'] = $_REQUEST['pseudo'];
-				$_SESSION['email'] = $_REQUEST['email'];
-				$_SESSION['sexe'] = $_REQUEST['sexe'];
-						
-				if(!empty($_POST['sexe']) && !empty($_POST['email']) && !empty($_POST['pseudo'])){
-					include 'database.php'; 
-					global $db;		
+		if(isset($_POST['send']) && isset($_SESSION['pseudo'])){
+					
+			/*Modification des infos perso*/	
+			if(!empty($_POST['sexe']) && !empty($_POST['email']) && !empty($_POST['pseudo'])){
+				include 'database.php'; 
+				global $db;		
 
-							
-					/*Verification de l'unicité de l'email*/
-					$p = $db->prepare("SELECT email FROM utilisateurs WHERE email = :email");
-					$p -> execute(['email' => $_POST['email']]);
+				$NouveauEmail = $_POST['email'];
+				$NouveauPseudo = $_POST['pseudo'];
+				$NouveauSexe = $_POST['sexe'];
+					
+				/*Modification de l'email*/
+				if($NouveauEmail!=$_SESSION['email']){
+					/*Verification de l'unicité du nouvel email*/
+					$EmailActuel = $_SESSION['email'];
+					$p = $db->prepare("SELECT email FROM utilisateurs WHERE email = '$NouveauEmail' ");
+					$p -> execute();
 					$NombreDemail = $p -> rowCount();
 
-					/*Verification de l'unicité du mot de passe*/
-					$n = $db->prepare("SELECT pseudo FROM utilisateurs WHERE pseudo = :pseudo");
-					$n -> execute(['pseudo' => $_POST['pseudo']]);
+					if($NombreDemail!=0){
+						echo " <br> Vous ne pouvez pas choisir cet email: un compte est déjà associé à celui-ci. <br>";
+					}
+					else{
+						$EmailActuel = $_SESSION['email'];
+						$PseudoActuel = $_SESSION['pseudo'];
+						$q= $db -> prepare("UPDATE utilisateurs SET email = '$NouveauEmail' WHERE pseudo = '$PseudoActuel' ");
+						$q -> execute();
+						$_SESSION['email']=$NouveauEmail;
+					}	
+				}
+
+				/*Modification du pseudo*/
+				if($NouveauPseudo!=$_SESSION['pseudo']){
+					/*Verification de l'unicité du nouveau pseudo*/
+					$PseudoActuel = $_SESSION['pseudo'];
+					$n = $db->prepare("SELECT pseudo FROM utilisateurs WHERE pseudo = '$NouveauPseudo' ");
+					$n -> execute();
 					$NombrePseudo = $n -> rowCount();
 
-					if($NombreDemail!=0){
-						echo " <br> Un compte est déjà associé à cet email. <br>";
-						if($NombrePseudo!=0){
-							echo "Ce pseudo est déjà utilisé. <br>";
-						}
+					if($NombrePseudo!=0){
+						echo " <br>Ce pseudo est déjà utilisé par un autre utilisateur du site. <br>";
 					}
-						else{
-							if($NombrePseudo!=0){
-								echo "Ce pseudo est déjà utilisé. <br>";
-						}
 					else{
-						$q = $db->prepare("INSERT INTO utilisateurs(pseudo,email,sexe,) VALUES(:pseudo,:email,:sexe)");						
-						$q->execute([
-						'pseudo' => $_SESSION['pseudo'],
-						'email' => $_SESSION['email'],
-						'sexe' => $_SESSION['sexe'],
-						]); 
-
-
-						echo "<br>L'utilisateur ",$_SESSION['pseudo']," de sexe ",$_SESSION['sexe']," vient de modifier ses informations personnelles compte.<br>"; 
-						echo "Bienvenue, ", $_SESSION['pseudo'], ", tu es désormais connecté!";
-									
-					}
+						$PseudoActuel = $_SESSION['pseudo'];
+						$q= $db -> prepare("UPDATE utilisateurs SET pseudo = '$NouveauPseudo' WHERE pseudo = '$PseudoActuel' ");
+						$q -> execute();
+						$_SESSION['pseudo']=$NouveauPseudo;
+					}	
 				}
+				
+				/*Modification du sexe*/
+				if($NouveauSexe!=$_SESSION['sexe']){
+					$SexeActuel = $_SESSION['sexe'];
+					$PseudoActuel = $_SESSION['pseudo'];
+					$q= $db -> prepare("UPDATE utilisateurs SET sexe = '$NouveauSexe' WHERE pseudo = '$PseudoActuel' ");
+					$q -> execute();
+					$_SESSION['sexe']=$NouveauSexe;
+				}
+			
+				
+				
+				
+
+				echo "<br>L'utilisateur ",$_SESSION['pseudo']," de sexe ",$_SESSION['sexe']," vient de modifier ses informations personnelles compte.<br>"; 
+							
 			}
 
 			else{
 				echo "Tous les champs n'ont pas été remplis!";
 			}				
 		}
-		if(!isset($_SESSION['pseudo']) || !isset($_SESSION['email'])){
-			echo "<a href=\"connexion.php\">Vous n'êtes pas connecté. Pour consulter ou modifier vos informations personnelles, veuillez vous connecter en cliquant ici. </a>";
+
+		if(isset($_POST['send2']) && !isset($_SESSION['pseudo'])){
+			echo "Vous ne pouvez pas modifier vos informations tant que vous n'êtes pas connectés.";
 		}
-	} 
+
+	?>
+
+
+
+	<form class="infoPerso" method="post">
+		<INPUT type="submit" name='send2' id='send2' value="Supprimer mon compte">
+
+	<?php
+	/*Si l'utilisateur est connecté, il peut supprimer son compte s'il le souhaite*/
+		if(isset($_POST['send2']) && isset($_SESSION['pseudo'])){
+			
+			include 'database.php'; 
+			global $db;	
+			
+
+			$tmp=$_SESSION['pseudo'];
+			$q = $db->prepare("DELETE FROM utilisateurs WHERE pseudo = '$tmp' ");
+			$q->execute(); 
+
+			echo "Votre compte a été supprimé";
+
+			$_SESSION['pseudo']= NULL;
+			$_SESSION['email']= NULL;
+			$_SESSION['sexe']= NULL;
+		
+		}
+	?>
+
+
+	<?php
+	/*Si l'utilisateur n'est pas connecté, il ne peut pas voir les informations qui le concernent : il doit se connecter*/
+	if(!isset($_SESSION['pseudo']) || !isset($_SESSION['email']) || !isset($_SESSION['sexe'])){
+		echo "<br><p>Vous n'êtes pas connecté. Pour consulter ou modifier vos informations personnelles, veuillez vous connecter en cliquant ici : <a class='SeConnecter' href='connexion.php'> Se connecter </a></p>";
+	}
 	?>
 
 
