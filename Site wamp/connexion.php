@@ -40,8 +40,8 @@
 						<p>Création d'un compte</p>
 						<form method="post"> 
 							Pseudo : <INPUT type="text" name="pseudo" size="30" placeholder="Choisi ton pseudo!" required=""> <br><br>
-							Sexe: Homme : <INPUT type="radio" name="sexe" value="M" required>
-							Femme : <INPUT type="radio" name="sexe" value="F" required> <br><br>
+							Sexe: Homme <INPUT type="radio" name="sexe" value="M" required>
+							Femme <INPUT type="radio" name="sexe" value="F" required> <br><br>
 							email : <INPUT type="email" name="email" placeholder="et ton email!" required> <br><br>
 							Mot de passe : <input type="password" name="password" size="16" required> <br><br>
 							Valider : <input type="submit" name="send" id="send" value="c'est parti !">
@@ -54,9 +54,9 @@
 					<div class="connexion">
 						<p>Connexion</p>
 						<form method="post">
-							Pseudo : <input type="text" name="pseudo" size="30" placeholder="saisi ton pseudo!" required> <br><br>
-							Mot de passe : <input type="password" name="password" size="16" required> <br><br>
-							Valider : <input type="submit" name="send2" id="send2" value="go !">
+							Pseudo : <input type="text" name="pseudoConnexion" size="30" placeholder="saisi ton pseudo!" required> <br><br>
+							Mot de passe : <input type="password" name="passwordConnexion" size="16" required> <br><br>
+							Valider : <input type="submit" name="sendConnexion" id="send2" value="go !">
 						</form>
 					</div>
 				</li>
@@ -67,6 +67,8 @@
 		
 
 		<?php
+		/*PHP pour le formulaire d'inscription*/
+
 			if(isset($_POST['send'])){
 
 				if(!empty($_POST['password']) && !empty($_POST['sexe']) && !empty($_POST['email']) && !empty($_POST['pseudo'])){
@@ -117,7 +119,7 @@
 
 							
 							echo "<br>L'utilisateur ",$_SESSION['pseudo']," est de sexe ",$_SESSION['sexe']," vient de créer un nouveau compte.<br>"; 
-							echo "Bienvenue, ", $_SESSION['pseudo'], ", tu es désormais connecté!";
+							echo "Bienvenue ", $_SESSION['pseudo'], ", tu es désormais connecté!";
 							
 						}
 					}
@@ -132,20 +134,54 @@
 
 
 		<?php
-			/*if(isset($_POST['send2'])){
-				$_SESSION['pseudo'] = $_REQUEST['pseudo'];
-				$_SESSION['password'] = $_REQUEST['email'];
-				
-				if(!empty($_POST['password'])){
-					include 'database.php'; 
-					global $db;		
+			/*php pour le formulaire de connexion*/
+			
+			if(isset($_POST['sendConnexion'])){
+
+				include 'database.php'; 
+				global $db;
 
 
-					echo "<br>L'utilisateur ",$_SESSION['pseudo']," vient de se connecter.<br>"; 
-					echo "Bienvenue, ", $_SESSION['pseudo'], ", tu es désormais connecté!";
+				/*On vérifie si tous les champs du formulaire sont bien remplis*/
+				if(!empty($_POST['pseudoConnexion'] && !empty($_POST['passwordConnexion']))){
+
+					$r = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
+					$r->execute(['pseudo' => $_POST['pseudoConnexion']]);
+					$result = $r->fetch();
+
+
+					/*On vérifie que le compte associé au pseudo existe bien*/
+					if($result==true){
+						
+						/*On vérifie que le mot de passe est correct*/
+						if(password_verify($_POST['passwordConnexion'], $result['password'])){
+							
+							$_SESSION['pseudo'] = $result['pseudo'];
+							$_SESSION['email'] = $result['email'];
+							$_SESSION['sexe'] = $result['sexe'];
+
+							echo "Bienvenue, ", $_SESSION['pseudo'], ", tu es désormais connecté!";
+
+						}
+
+
+						else{
+							echo "mot de passe incorrect"."\n";
+						}
+					}
+
+					/*Dans le cas ou le compte n'exoste pas : */
+					else{
+						echo "Le pseudo saisit n'est pas correct"."\n";
+					}
+
 				}
-				
-			}*/
+				/*Dans le cas où tous les champs ne sont pas rmeplis : */
+				else{
+					echo "Tous les champs ne sont pas remplis!"."\n";
+				}
+			}
+
 		?>
 
 
