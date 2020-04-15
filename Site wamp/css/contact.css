@@ -55,3 +55,36 @@ div.nav ul li a:hover{
 	background-color: white;
 	transition: 0.3s all;
 }
+
+/*Css pour le h1: "Vos avis"*/
+h1{
+	text-align: center;
+}
+
+/*css pour les commentaires*/
+div.MonCommentaire{
+	background-color: #c9c4ba;
+	color:grey;
+	margin-left: 200px;
+	margin-right: 200px;
+}
+div.MonCommentaire form{
+	margin-left: 50px;
+}
+div.MonCommentaire p{
+	font-size: 30px;
+}
+div.commentaire{
+	background-color: #c9c4ba;
+	color:grey;
+	margin-left: 200px;
+	margin-right: 200px;
+}
+div.commentaire p.utilisateur{
+	font-size: 30px;
+}
+div.commentaire p.message{
+	font-size: 20px;
+	margin-left: 50px;
+	color: white;
+}
