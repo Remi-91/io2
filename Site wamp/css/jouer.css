@@ -55,3 +55,61 @@ div.nav ul li a:hover{
 	background-color: white;
 	transition: 0.3s all;
 }
+
+/*css pour bouton de création de cartes*/
+a.creation{
+	text-decoration: none;
+	padding: 10px;
+	color: white;
+	background-color: #c9c4ba;
+	float: right;
+	margin-right: 50px;
+	margin-top: 15px;
+}
+/*animation du bouton*/
+a.creation:hover{
+	color:#c9c4ba;
+	background-color: white;
+	transition: 0.3s all;
+}
+
+/*css pour les questions*/
+div.reponse{
+	text-align: center;
+	margin-top: 100px;
+	font-size: 20px;
+}
+div.reponse p.correct{
+	color: green;
+}
+div.reponse p.incorrect{
+	color: red;
+}
+
+/*Si l'utilisateur n'est pas connecté, il est redirigé vers la page de connexion via ce bouton*/
+p.SeConnecter a{
+	text-decoration: none;
+	padding: 5px;
+	color: white;
+	background-color: #c9c4ba;
+}
+p.SeConnecter a:hover{
+	color:#c9c4ba;
+	background-color: white;
+	transition: 0.3s all;
+}
+
+/*css pour le bouton "question suivante" (sur la page reponse.php)*/
+p.suivant a{
+	text-decoration: none;
+	padding: 5px;
+	color: white;
+	background-color: #c9c4ba;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+p.suivant a:hover{
+	color:#c9c4ba;
+	background-color: white;
+	transition: 0.3s all;
+}
