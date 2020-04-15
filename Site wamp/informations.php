@@ -15,7 +15,7 @@
 <body>
 	<header>
 		<div class="header">
-			<a class="NomDuSite "href="accueil.php">Card<span>Games</span></a>
+			<a class="NomDuSite "href="accueil.php">Card<span>Game</span></a>
 			<img src="img/question.jpg" width=100% height="400">
 			<div class="nav">
 				<ul>
@@ -23,7 +23,7 @@
 					<li><a href="jouer.php">Jouer</a></li>
 					<li><a href="#">Informations</a></li>
 					<li><a href="connexion.php">Connexion</a></li>
-					<li><a href="contact.php">Contact</a></li>
+					<li><a href="avis.php">Vos avis</a></li>
 				</ul>
 			</div>
 		</div>
