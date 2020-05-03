@@ -31,8 +31,10 @@
 
 
 	<div class="contenu">
-		<p>Le contenu de cette page n'est pas encore disponible.</p>
-		<p>Elle sera mise à jour sous peu.</p>
+		<p>Bienvenue sur CardGames, ce site a été réalisé par Rémy Levy et Samuel Tardieu. Le principe est simple, des questions 
+		sont posés, et vous devez repondre par Vrai ou Faux a cette même question. Il est aussi possible de rajouter des questions si vous le
+		souhaitez.</p>
+		<p>Amusez-vous bien sur CardGames !</p>
 	</div>
 
 
