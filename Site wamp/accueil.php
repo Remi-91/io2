@@ -13,7 +13,7 @@
 <body>
 	<header>
 		<div class="header">
-			<a class="NomDuSite" href="#">Card<span>Game</span></a>
+			<a class="NomDuSite" href="#">Card<span>Game</span></a>			
 			<img src="img/question.jpg" width=100% height="400">
 			<div class="nav">
 				<ul>
@@ -34,3 +34,13 @@
 		<p>Le contenu de cette page n'est pas encore disponible.</p>
 		<p>Elle sera mise à jour sous peu.</p>
 	</div>
+
+
+
+
+	<footer>
+		<p>CardGame</p>
+	</footer>
+</body>
+
+</html>
